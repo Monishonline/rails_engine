@@ -21,3 +21,11 @@ coverage
 
 # Ignore vcr cassettes
 /spec/vcr_cassettes
+
+# Ignore CSV files
+/db/customers.csv
+/db/items.csv
+/db/merchants.csv
+/db/invoices.csv
+/db/transactions.csv
+/db/invoice_items.csv
