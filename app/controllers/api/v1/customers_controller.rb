@@ -10,6 +10,4 @@ class Api::V1::CustomersController < ApplicationController
     customer = Customer.find( params[:id] )
     respond_with customer
   end
-
 end
-

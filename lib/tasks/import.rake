@@ -37,9 +37,9 @@ namespace :import do
 
     CSV.foreach(file, :headers => true) do |row|
       Invoice.create!(
-        customer_id: row[1],
-        merchant_id: row[2],
-        status:      row[3],
+        status:      row[1],
+        customer_id: row[2],
+        merchant_id: row[3],
         created_at:  row[4],
         updated_at:  row[5]
       )
@@ -89,7 +89,7 @@ namespace :import do
       Transaction.create!(
         invoice_id:                  row[1],
         credit_card_number:          row[2],
-        #credit_card_expiration_date: row[3],
+        # credit_card_expiration_date: row[3],
         result:                      row[4],
         created_at:                  row[5],
         updated_at:                  row[6]
