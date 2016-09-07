@@ -3,8 +3,8 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
     create_table :customers do |t|
       t.text :first_name
       t.text :last_name
-      t.string :created_at
-      t.string :updated_at
+      t.datetime :created_at
+      t.datetime :updated_at
     end
   end
 end
