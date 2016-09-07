@@ -10,7 +10,6 @@ RSpec.describe "items controller", :type => :request do
 
     it "returns all items in index" do
       item = FactoryGirl.create(:item)
-
       get '/api/v1/items'
 
       items = JSON.parse(response.body)
