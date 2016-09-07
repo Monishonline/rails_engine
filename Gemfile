@@ -28,10 +28,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'faraday'
 gem 'responders'
+gem 'faker'
+gem 'active_model_serializers', github: "rails-api/active_model_serializers"
 
 group :test do
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
