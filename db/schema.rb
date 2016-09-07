@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907023307) do
+ActiveRecord::Schema.define(version: 20160907033738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,22 +23,22 @@ ActiveRecord::Schema.define(version: 20160907023307) do
   end
 
   create_table "invoice_items", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "invoice_id"
     t.integer  "quantity"
     t.integer  "unit_price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "invoice_id"
-    t.integer  "item_id"
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id", using: :btree
     t.index ["item_id"], name: "index_invoice_items_on_item_id", using: :btree
   end
 
   create_table "invoices", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "merchant_id"
     t.text     "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
-    t.integer  "merchant_id"
     t.index ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
     t.index ["merchant_id"], name: "index_invoices_on_merchant_id", using: :btree
   end
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20160907023307) do
     t.text     "name"
     t.text     "description"
     t.integer  "unit_price"
+    t.integer  "merchant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "merchant_id"
     t.index ["merchant_id"], name: "index_items_on_merchant_id", using: :btree
   end
 
@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 20160907023307) do
   end
 
   create_table "transactions", force: :cascade do |t|
+    t.integer  "invoice_id"
     t.text     "credit_card_number"
     t.text     "result"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "invoice_id"
     t.index ["invoice_id"], name: "index_transactions_on_invoice_id", using: :btree
   end
 

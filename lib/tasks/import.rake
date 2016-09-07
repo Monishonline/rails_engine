@@ -9,7 +9,7 @@ namespace :import do
     CSV.foreach(file, :headers => true) do |row|
       Customer.create!(
         first_name: row[1],
-        last_name: row[2],
+        last_name:  row[2],
         created_at: row[3],
         updated_at: row[4]
       )
@@ -37,9 +37,9 @@ namespace :import do
 
     CSV.foreach(file, :headers => true) do |row|
       Invoice.create!(
-        status:      row[1],
-        customer_id: row[2],
-        merchant_id: row[3],
+        customer_id: row[1],
+        merchant_id: row[2],
+        status:      row[3],
         created_at:  row[4],
         updated_at:  row[5]
       )
