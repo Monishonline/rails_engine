@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'active_model_serializers', github: "rails-api/active_model_serializers"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
@@ -19,7 +19,8 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
