@@ -2,12 +2,12 @@ class Api::V1::InvoiceItems::SearchController < ApplicationController
   respond_to :json
 
   def index
-    invoice_items = InvoiceItems.where(search_params)
+    invoice_items = InvoiceItem.where(search_params)
     respond_with invoice_items
   end
 
   def show
-    invoice_item = InvoiceItems.find_by(search_params)
+    invoice_item = InvoiceItem.find_by(search_params)
     respond_with invoice_item
   end
 
