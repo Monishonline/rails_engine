@@ -6,4 +6,3 @@ class Api::V1::Customers::RandomController < ApplicationController
     respond_with customer
   end
 end
-
