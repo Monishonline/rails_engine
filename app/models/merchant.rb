@@ -4,7 +4,7 @@ class Merchant < ActiveRecord::Base
   has_many :invoice_items, through: :items
   has_many :transactions, through: :invoices
   has_many :customers, through: :invoices
-  
+
   def revenue
     invoices.
       joins(:transactions).
@@ -12,7 +12,7 @@ class Merchant < ActiveRecord::Base
       includes(:invoice_items).
       sum("quantity * unit_price").to_f
   end
-  
+
   def revenue_by_date(date)
     invoices.
       where(created_at: date).
@@ -29,5 +29,9 @@ class Merchant < ActiveRecord::Base
       group("merchants.id").
       order("most_items DESC").
       limit(num_of_merchants)
+  end
+
+  def self.customers_with_pending_invoices
+    customers.()
   end
 end
