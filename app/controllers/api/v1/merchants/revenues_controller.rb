@@ -3,6 +3,6 @@ class Api::V1::Merchants::RevenuesController < ApplicationController
 
   def show
     merchant_revenue = Merchant.find(params[:id]).revenue
-    respond_with merchant_revenue
+    respond_with merchant_revenue, each_serializer: MerchantRevenueSerializer
   end
 end
