@@ -2,6 +2,6 @@ class MerchantRevenueSerializer < ActiveModel::Serializer
   attribute :formatted_revenue, key: :revenue
   
   def formatted_revenue
-    "$#{object.revenue}"
+    object.to_s
   end
 end
