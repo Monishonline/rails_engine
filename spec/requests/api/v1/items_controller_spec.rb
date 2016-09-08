@@ -4,7 +4,7 @@ RSpec.describe Api::V1::ItemsController, :type => :request do
 
   describe "GET #index" do
     it "returns all items in index" do
-      item = FactoryGirl.create_list(:item, 3)
+      item = create_list(:item, 3)
 
       get '/api/v1/items'
       expect(response).to be_success
@@ -16,7 +16,7 @@ RSpec.describe Api::V1::ItemsController, :type => :request do
 
   describe "GET #show" do
     it "returns an item by id" do
-      item = FactoryGirl.create(:item, id: 7)
+      item = create(:item, id: 7)
 
       get '/api/v1/items/7'
       expect(response).to be_success
