@@ -4,7 +4,7 @@ RSpec.describe Api::V1::CustomersController, :type => :request do
 
   describe "GET #index" do
     it "returns all customers in index" do
-      customer = FactoryGirl.create_list(:customer, 3)
+      customer = create_list(:customer, 3)
 
       get '/api/v1/customers'
       expect(response).to be_success
@@ -18,7 +18,7 @@ RSpec.describe Api::V1::CustomersController, :type => :request do
 
   describe "GET #show" do
     it "returns a customer by id" do
-      customer = FactoryGirl.create(:customer, id: 14)
+      customer = create(:customer, id: 14)
 
       get '/api/v1/customers/14'
       expect(response).to be_success

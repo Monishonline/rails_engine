@@ -4,7 +4,7 @@ RSpec.describe Api::V1::Transactions::RandomController, :type => :request do
 
   describe "GET #show" do
     it "returns a random transaction" do
-      transactions = FactoryGirl.create_list(:transaction, 4)
+      transactions = create_list(:transaction, 4)
 
       get '/api/v1/transactions/random'
       expect(response).to be_success

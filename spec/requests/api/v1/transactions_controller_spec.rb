@@ -4,7 +4,7 @@ RSpec.describe Api::V1::TransactionsController, :type => :request do
 
   describe "GET #index" do
     it "returns all transactions in index" do
-      t = FactoryGirl.create_list(:transaction, 3)
+      t = create_list(:transaction, 3)
 
       get '/api/v1/transactions'
       expect(response).to be_success
@@ -18,7 +18,7 @@ RSpec.describe Api::V1::TransactionsController, :type => :request do
 
   describe "GET #show" do
     it "returns a transaction by id" do
-      transaction = FactoryGirl.create(:transaction, id: 14)
+      transaction = create(:transaction, id: 14)
 
       get '/api/v1/transactions/14'
       expect(response).to be_success

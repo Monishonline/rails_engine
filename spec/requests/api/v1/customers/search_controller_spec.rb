@@ -4,7 +4,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
 
   describe "GET #index" do
     it "finds all transactions" do
-      customers = FactoryGirl.create_list(:customer, 4)
+      customers = create_list(:customer, 4)
 
       get '/api/v1/customers/find_all'
       expect(response).to be_success
@@ -18,7 +18,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
 
   describe "GET #show" do
     it "returns a customer by id" do
-      customer = FactoryGirl.create(:customer, id: 8)
+      customer = create(:customer, id: 8)
 
       get '/api/v1/customers/find?id=8'
       expect(response).to be_success
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
     end
 
     it "returns a customer by first_name" do
-      customer = FactoryGirl.create(:customer, first_name: "John")
+      customer = create(:customer, first_name: "John")
 
       get '/api/v1/customers/find?first_name=John'
       expect(response).to be_success
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
     end
 
     it "returns a customer by last_name" do
-      customer = FactoryGirl.create(:customer, last_name: "Johnson")
+      customer = create(:customer, last_name: "Johnson")
 
       get '/api/v1/customers/find?last_name=Johnson'
       expect(response).to be_success
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
     end
 
     it "returns a customer by created_at" do
-      customer = FactoryGirl.create(:customer, created_at:"2012-03-27T14:54:10.000Z")
+      customer = create(:customer, created_at:"2012-03-27T14:54:10.000Z")
 
       get '/api/v1/customers/find?created_at=2012-03-27T14:54:10.000Z'
       expect(response).to be_success
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::Customers::SearchController, :type => :request do
     end
 
     it "returns a customer by updated_at" do
-      customer = FactoryGirl.create(:customer, updated_at:"2012-03-27T14:54:10.000Z")
+      customer = create(:customer, updated_at:"2012-03-27T14:54:10.000Z")
 
       get '/api/v1/customers/find?updated_at=2012-03-27T14:54:10.000Z'
       expect(response).to be_success

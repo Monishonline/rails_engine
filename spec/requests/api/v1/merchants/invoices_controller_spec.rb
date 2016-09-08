@@ -4,8 +4,8 @@ RSpec.describe Api::V1::Merchants::InvoicesController, :type => :request do
 
   describe "GET #index" do
     it "returns all invoices provided a merchant id" do
-      merchant = FactoryGirl.create(:merchant, id: 4)
-      invoice = FactoryGirl.create(:invoice, id: 8, merchant_id: merchant.id)
+      merchant = create(:merchant, id: 4)
+      invoice = create(:invoice, id: 8, merchant_id: merchant.id)
 
       get '/api/v1/merchants/4/invoices'
       expect(response).to be_success

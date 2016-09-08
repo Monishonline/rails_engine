@@ -4,7 +4,7 @@ RSpec.describe Api::V1::Merchants::SearchController, :type => :request do
 
   describe "GET #index" do
     it "finds all transactions" do
-      merchants = FactoryGirl.create_list(:merchant, 4)
+      merchants = create_list(:merchant, 4)
 
       get '/api/v1/merchants/find_all'
       expect(response).to be_success
@@ -17,7 +17,7 @@ RSpec.describe Api::V1::Merchants::SearchController, :type => :request do
 
   describe "GET #show" do
     it "returns a merchant by id" do
-      merchant = FactoryGirl.create(:merchant, id: 8)
+      merchant = create(:merchant, id: 8)
 
       get '/api/v1/merchants/find?id=8'
       expect(response).to be_success
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::Merchants::SearchController, :type => :request do
     end
 
     it "returns a merchant by name" do
-      merchant = FactoryGirl.create(:merchant, name: "Business and Co")
+      merchant = create(:merchant, name: "Business and Co")
 
       get '/api/v1/merchants/find?first_name=Business and Co'
       expect(response).to be_success
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::Merchants::SearchController, :type => :request do
     end
 
     it "returns a merchant by created_at" do
-      merchant = FactoryGirl.create(:merchant, created_at:"2012-03-27T14:54:10.000Z")
+      merchant = create(:merchant, created_at:"2012-03-27T14:54:10.000Z")
 
       get '/api/v1/merchants/find?created_at=2012-03-27T14:54:10.000Z'
       expect(response).to be_success
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::Merchants::SearchController, :type => :request do
     end
 
     it "returns a merchant by updated_at" do
-      merchant = FactoryGirl.create(:merchant, updated_at:"2012-03-27T14:54:10.000Z")
+      merchant = create(:merchant, updated_at:"2012-03-27T14:54:10.000Z")
 
       get '/api/v1/merchants/find?updated_at=2012-03-27T14:54:10.000Z'
       expect(response).to be_success

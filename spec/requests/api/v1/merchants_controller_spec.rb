@@ -4,7 +4,7 @@ RSpec.describe Api::V1::MerchantsController, :type => :request do
 
   describe "GET #index" do
     it "returns all merchants in index" do
-      merchant = FactoryGirl.create_list(:merchant, 3)
+      merchant = create_list(:merchant, 3)
 
       get '/api/v1/merchants'
       expect(response).to be_success
@@ -17,7 +17,7 @@ RSpec.describe Api::V1::MerchantsController, :type => :request do
 
   describe "GET #show" do
     it "returns a merchant by id" do
-      merchant = FactoryGirl.create(:merchant, id: 4)
+      merchant = create(:merchant, id: 4)
 
       get '/api/v1/merchants/4'
       expect(response).to be_success
