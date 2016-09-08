@@ -6,21 +6,26 @@ class Merchant < ActiveRecord::Base
   has_many :customers, through: :invoices
   
   def revenue
-    invoices.joins(:transactions).where(:transactions => {result: "success"}).includes(:invoice_items).sum("quantity * unit_price").to_f
+    invoices.joins(:transactions).
+    where(transactions: {result: "success"}).
+    includes(:invoice_items).
+    sum("quantity * unit_price").to_f
   end
   
   def revenue_by_date(date)
-    invoices.where(created_at: date).joins(:transactions).where(:transactions => {result: "success"}).includes(:invoice_items).sum("quantity * unit_price").to_f
+    invoices.where(created_at: date).
+    joins(:transactions).
+    where(transactions: {result: "success"}).
+    includes(:invoice_items).
+    sum("quantity * unit_price").to_f
   end
 
-  def self.most_items(quantity)
+  def self.most_items(num_of_merchants)
     select("merchants.*, SUM(invoice_items.quantity) AS most_items").
       joins(invoices: [:transactions, :invoice_items]).
       where(transactions: {result: "success"}).
       group("merchants.id").
       order("most_items DESC").
-      limit(quantity)
-    
-    # joins(invoices: :transactions).where(:transactions => {result: "success"})
+      limit(num_of_merchants)
   end
 end
