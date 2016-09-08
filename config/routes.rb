@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           get ':id/revenue',  to: 'revenues#show'
           get 'most_items',   to: 'sold_items#show'
           get ':id/customers_with_pending_invoices', to: 'customers_with_pending_invoices#show'
+          get ':id/favorite_customer', to: 'favorite_customer#show'
         end
         namespace :customers do
           get 'find',                  to: 'search#show'

@@ -38,4 +38,14 @@ class Merchant < ActiveRecord::Base
       distinct.map &:customer
   end
 
+  def favorite_customer
+    customer = customers.joins(:transactions).
+                where(transactions: {result: "success"}).
+                group("customers.id").
+                order("count_transactions desc").
+                limit(1).
+                count("transactions").
+                keys.join
+    Customer.find(customer)
+  end
 end
