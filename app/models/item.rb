@@ -19,6 +19,15 @@ class Item < ActiveRecord::Base
       keys.first
   end
 
+  def self.most_items(num_of_items)
+    select("items.*, SUM(invoice_items.quantity) AS most_items").
+      joins(invoices: :transactions).
+      where(transactions: {result: "success"}).
+      group("items.id").
+      order("most_items DESC").
+      limit(num_of_items)
+  end
+
   def self.most_revenue(quantity)
     select("items.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue").
       joins(invoices: [:transactions, :invoice_items]).
