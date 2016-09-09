@@ -1,6 +1,11 @@
 class Api::V1::Merchants::RevenuesController < ApplicationController
   respond_to :json
 
+  def index
+    total_date_revenue = Merchant.total_revenue_by_date(params[:date])
+    respond_with total_date_revenue, serializer: MerchantTotalRevenueSerializer
+  end
+
   def show
     if params[:date]
       date_revenue = Merchant.find(params[:id]).revenue_by_date(params[:date])
@@ -11,4 +16,3 @@ class Api::V1::Merchants::RevenuesController < ApplicationController
     end
   end
 end
-

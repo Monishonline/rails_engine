@@ -22,6 +22,13 @@ class Merchant < ActiveRecord::Base
       sum("quantity * unit_price").to_f
   end
 
+  def self.total_revenue_by_date(date)
+    joins(invoices: [:transactions, :invoice_items]).
+      where(created_at: date).
+      where(transactions: {result: "success"}).
+      sum("invoice_items.unit_price * invoice_items.quantity")
+  end
+
   def self.most_items(num_of_merchants)
     select("merchants.*, SUM(invoice_items.quantity) AS most_items").
       joins(invoices: [:transactions, :invoice_items]).
