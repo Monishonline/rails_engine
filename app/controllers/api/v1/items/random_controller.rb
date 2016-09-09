@@ -1,8 +1,8 @@
-class Api::V1::Items::RandomController < ApplicationController
+class Api::V1::Items::RandomController < Api::V1::BaseController
   respond_to :json
 
   def show
-    item = Item.order("RANDOM()").take
+    item = random(Item)
     respond_with item
   end
 end
