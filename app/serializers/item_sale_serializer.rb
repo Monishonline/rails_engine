@@ -1,7 +1,7 @@
 class ItemSaleSerializer < ActiveModel::Serializer
-  attribute :formatted_revenue, key: :best_day
-  
-  def formatted_revenue
+  attribute :best_day
+
+  def best_day
     object
   end
 end

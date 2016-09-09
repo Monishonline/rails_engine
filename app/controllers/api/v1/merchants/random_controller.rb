@@ -1,8 +1,8 @@
-class Api::V1::Merchants::RandomController < ApplicationController
+class Api::V1::Merchants::RandomController < Api::V1::BaseController
   respond_to :json
 
   def show
-    merchant = Merchant.order("RANDOM()").take
+    merchant = random(Merchant)
     respond_with merchant
   end
 end

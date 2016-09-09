@@ -1,4 +1,11 @@
 class Transaction < ActiveRecord::Base
-  #default_scope { where(result: "success") }
   belongs_to :invoice
+
+  def self.successful
+    where(result: "success")
+  end
+
+  def self.pending
+    where(result: "failed")
+  end
 end
