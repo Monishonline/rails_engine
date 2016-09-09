@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Items::SoldItemsController, :type => :request do
+RSpec.describe Api::V1::Items::MostRevenueController, :type => :request do
 
   describe "GET #show" do
     it "returns the top x items ranked by total revenue" do
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Items::SoldItemsController, :type => :request do
       create(:invoice_item, invoice_id: invoice3.id, item_id: item3.id, unit_price: 5000, quantity: 2)
       create(:transaction, invoice_id: invoice3.id, result: "success")
 
-      get '/api/v1/items/most_items?quantity=2'
+      get '/api/v1/items/most_revenue?quantity=2'
       expect(response).to be_success
 
       content = JSON.parse(response.body)
