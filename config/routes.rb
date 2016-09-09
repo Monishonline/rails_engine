@@ -13,6 +13,7 @@ Rails.application.routes.draw do
           get 'most_items',   to: 'sold_items#show'
           get ':id/customers_with_pending_invoices', to: 'customers_with_pending_invoices#show'
           get ':id/favorite_customer', to: 'favorite_customer#show'
+          get 'most_revenue',          to: 'most_revenue#show'
         end
         namespace :customers do
           get 'find',                  to: 'search#show'
@@ -37,7 +38,6 @@ Rails.application.routes.draw do
           get ':id/best_day',      to: 'sales#show'
           get 'most_items',        to: 'sold_items#show'
           get 'most_revenue',      to: 'most_revenue#show'
-          get 'most_items',        to: 'sold_items#show'
         end
         namespace :invoices do
           get 'find',              to: 'search#show'

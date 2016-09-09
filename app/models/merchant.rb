@@ -48,4 +48,13 @@ class Merchant < ActiveRecord::Base
                 keys.join
     Customer.find(customer)
   end
+
+  def self.most_revenue(quantity)
+    select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue").
+      joins(invoices: [:transactions, :invoice_items]).
+      where(transactions: {result: "success"}).
+      group("merchants.id").
+      order("total_revenue DESC").
+      take(quantity)
+  end
 end
