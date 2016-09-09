@@ -1,5 +1,5 @@
 class Api::V1::Merchants::RandomController < Api::V1::BaseController
-  respond_to :json
+  respond_to :json 
 
   def show
     merchant = random(Merchant)
