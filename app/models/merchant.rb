@@ -5,10 +5,14 @@ class Merchant < ActiveRecord::Base
   has_many :transactions, through: :invoices
   has_many :customers, through: :invoices
 
-  def revenue
+  def successful_transactions
     invoices.
       joins(:transactions).
-      merge(Transaction.successful).
+      merge(Transaction.successful)
+  end
+  
+  def revenue
+    successful_transactions.
       includes(:invoice_items).
       sum("quantity * unit_price").to_f
   end
@@ -25,7 +29,7 @@ class Merchant < ActiveRecord::Base
   def self.total_revenue_by_date(date)
     joins(invoices: [:transactions, :invoice_items]).
       where(invoices: {created_at: date}).
-      where(transactions: {result: "success"}).
+      merge(Transaction.successful).  
       sum("invoice_items.unit_price * invoice_items.quantity")
   end
 
@@ -50,7 +54,7 @@ class Merchant < ActiveRecord::Base
     customer = customers.joins(:transactions).
                 merge(Transaction.successful).
                 group("customers.id").
-                order("count_transactions desc").
+                order("count_transactions DESC").
                 limit(1).
                 count("transactions").
                 keys.join
@@ -60,7 +64,7 @@ class Merchant < ActiveRecord::Base
   def self.most_revenue(quantity)
     select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue").
       joins(invoices: [:transactions, :invoice_items]).
-      where(transactions: {result: "success"}).
+      merge(Transaction.successful).
       group("merchants.id").
       order("total_revenue DESC").
       take(quantity)
