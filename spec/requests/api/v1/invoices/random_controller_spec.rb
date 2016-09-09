@@ -10,9 +10,7 @@ RSpec.describe Api::V1::Invoices::RandomController, :type => :request do
       expect(response).to be_success
 
       content = JSON.parse(response.body)
-
-      expect(content).to have_key("id")
-      expect(content).to have_key("status")
+      expect(content.keys).to eq(["id", "customer_id", "merchant_id", "status", "created_at", "updated_at"])
     end
   end
 end
