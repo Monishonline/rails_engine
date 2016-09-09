@@ -1,7 +1,7 @@
 class MerchantTotalRevenueSerializer < ActiveModel::Serializer
-  attribute :formatted_revenue, key: :total_revenue
+  attribute :total_revenue
 
-  def formatted_revenue
+  def total_revenue
     object.to_s
   end
 end

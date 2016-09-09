@@ -7,7 +7,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def show
-    customer = Customer.find( params[:id] )
+    customer = Customer.find(params[:id])
     respond_with customer
   end
 end

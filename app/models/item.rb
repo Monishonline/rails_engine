@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   def cents_to_dollars
     self.unit_price = (unit_price.to_f / 100).to_s
   end
-  
+
   def self.successful_transactions
     joins(invoices: :transactions).
     merge(Transaction.successful)
@@ -27,7 +27,7 @@ class Item < ActiveRecord::Base
   def self.most_items(num_of_items)
     select("items.*, SUM(invoice_items.quantity) AS most_items").
       successful_transactions.
-      group("items.id").
+      group("id").
       order("most_items DESC").
       limit(num_of_items)
   end
@@ -35,7 +35,7 @@ class Item < ActiveRecord::Base
   def self.most_revenue(quantity)
     select("items.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue").
       successful_transactions.
-      group("items.id").
+      group("id").
       order("total_revenue DESC").
       take(quantity)
   end
