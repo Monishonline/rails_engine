@@ -36,7 +36,7 @@ FactoryGirl.define do
     item
     invoice
     quantity   Faker::Number.between(1, 10)
-    unit_price Faker::Commerce.price
+    unit_price 201.89
     created_at Faker::Time.between(3.days.ago, Date.today, :all)
     updated_at Faker::Time.between(2.days.ago, Date.today, :all)
   end
