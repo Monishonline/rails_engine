@@ -10,7 +10,7 @@ class Merchant < ActiveRecord::Base
       joins(:transactions).
       merge(Transaction.successful)
   end
-  
+
   def revenue
     successful_transactions.
       includes(:invoice_items).
@@ -29,7 +29,7 @@ class Merchant < ActiveRecord::Base
   def self.total_revenue_by_date(date)
     joins(invoices: [:transactions, :invoice_items]).
       where(invoices: {created_at: date}).
-      merge(Transaction.successful).  
+      merge(Transaction.successful).
       sum("invoice_items.unit_price * invoice_items.quantity")
   end
 
@@ -37,7 +37,7 @@ class Merchant < ActiveRecord::Base
     select("merchants.*, SUM(invoice_items.quantity) AS most_items").
       joins(invoices: [:transactions, :invoice_items]).
       merge(Transaction.successful).
-      group("merchants.id").
+      group("id").
       order("most_items DESC").
       limit(num_of_merchants)
   end
@@ -45,15 +45,15 @@ class Merchant < ActiveRecord::Base
   def customers_with_pending_invoices
     customers.
       joins(:invoices).
-      joins("INNER JOIN transactions on transactions.invoice_id=invoices.id").
+      joins("INNER JOIN transactions ON transactions.invoice_id=invoices.id").
       merge(Transaction.pending).
       distinct
   end
- 
+
   def favorite_customer
     customer = customers.joins(:transactions).
                 merge(Transaction.successful).
-                group("customers.id").
+                group("id").
                 order("count_transactions DESC").
                 limit(1).
                 count("transactions").
@@ -65,7 +65,7 @@ class Merchant < ActiveRecord::Base
     select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue").
       joins(invoices: [:transactions, :invoice_items]).
       merge(Transaction.successful).
-      group("merchants.id").
+      group("id").
       order("total_revenue DESC").
       take(quantity)
   end
