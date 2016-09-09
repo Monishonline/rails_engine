@@ -6,8 +6,4 @@ class InvoiceItem < ActiveRecord::Base
   def cents_to_dollars
     self.unit_price = (unit_price.to_f / 100).to_s
   end
-
-  def self.successful_transactions
-    joins(invoice: :transactions).merge(Transaction.successful_transactions)
-  end  
 end

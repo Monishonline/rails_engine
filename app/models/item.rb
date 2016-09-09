@@ -10,13 +10,13 @@ class Item < ActiveRecord::Base
   
   def self.successful_transactions
     joins(invoices: :transactions).
-    merge(Transaction.successful_transactions)
+    merge(Transaction.successful)
   end
 
   def best_day
     invoice_items.
       joins(invoice: :transactions).
-      merge(Transaction.successful_transactions).
+      merge(Transaction.successful).
       group("invoices.created_at").
       order("sum_invoice_items_quantity_all_invoice_items_unit_price DESC").
       limit(1).
