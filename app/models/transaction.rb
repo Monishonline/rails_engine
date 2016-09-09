@@ -1,4 +1,7 @@
 class Transaction < ActiveRecord::Base
-  #default_scope { where(result: "success") }
   belongs_to :invoice
+  
+  def self.successful_transactions
+    where(result: "success")
+  end
 end
