@@ -10,9 +10,7 @@ RSpec.describe Api::V1::Items::RandomController, :type => :request do
       expect(response).to be_success
 
       content = JSON.parse(response.body)
-            
-      expect(content).to have_key("id")
-      expect(content).to have_key("description")
+      expect(content.keys).to eq(["id", "name", "description", "unit_price", "merchant_id", "created_at", "updated_at"])
     end
   end
 end

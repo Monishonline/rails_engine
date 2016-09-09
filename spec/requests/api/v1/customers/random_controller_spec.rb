@@ -8,6 +8,9 @@ RSpec.describe Api::V1::Customers::RandomController, :type => :request do
 
       get '/api/v1/customers/random'
       expect(response).to be_success
+      
+      content = JSON.parse(response.body)
+      expect(content.keys).to eq(["id", "first_name", "last_name", "created_at", "updated_at"])
     end
   end
 end
