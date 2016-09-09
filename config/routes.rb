@@ -35,6 +35,7 @@ Rails.application.routes.draw do
           get ':id/invoice_items', to: 'invoice_items#index'
           get ':id/merchant',      to: 'merchants#show'
           get ':id/best_day',      to: 'sales#show'
+          get 'most_revenue',      to: 'most_revenue#show'
         end
         namespace :invoices do
           get 'find',              to: 'search#show'
