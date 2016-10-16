@@ -7,10 +7,8 @@ class Customer < ActiveRecord::Base
     merchant = merchants.joins(:transactions).
                 where(transactions: {result: "success"}).
                 group("id").
-                order("count_transactions desc").
-                limit(1).
-                count("transactions").
-                keys.join
+                order("count(transactions) desc").
+                first
     Merchant.find(merchant)
   end
 end
